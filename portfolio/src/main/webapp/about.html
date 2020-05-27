@@ -1,20 +1,53 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>About</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-  </head>
-  <body>
-    <ul id="nav">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="resume.html">Resume</a></li>
-        <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <div id="content">
-      <p>My name is Coco Sack. I am a current Sophomore at Yale University, currently studying Computer Science and Psychology. I love to cook, travel, read.</p>
-    </div>
-  </body>
+    <head>
+        <meta charset="UTF-8">
+        <title>About</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+    </head>
+    <body id = about>
+        <div id="frametop" class="frame"></div>
+        <div id="framebottom" class="frame"></div>
+        <div id="frameright" class="frame"></div>
+        <div id="frameleft" class="frame"></div>
+        <ul id="nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="resume.html">Resume</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div id="content">
+            <h2>
+                <span
+                class="txt-rotate"
+                data-period="10000"
+                data-rotate='["About" ]'></span>
+            </h2>
+            <div id="aboutContainer">
+                <h3>About Me</h3>
+                <div class = rectImage>
+                    <img class="aboutImg" src = "/images/Portrait2.jpg" alt="About Me Photo">
+                </div>
+                <p class="aboutText">My name is Coco Sack. I am a current sophomore at Yale University where I study Computer Science & Psychology with a focus in Artificial Intelligence. In other words, I am interested in the boundaries and intersections of the human mind, state-of-the-art technologies, and the legal systems that regulate them. How do we harness computer vision and natural language processing to charter new waters, create innovative solutions, and improve daily life for all humans? I am especially interested in accomplishing this with artificial intelligence that is transparent, human-interpretable, and privacy-oriented.</p>
+                <br>
+                <p class="infoText">Name:  
+                    <span class="infoAnswer">Coco Vera Sack</span>
+                    Age:  
+                    <span class="infoAnswer">20 years</span> 
+                    School: 
+                    <span class="infoAnswer">Yale University</span>
+                </p>
+                <p class="infoText">Home-town:  
+                    <span class="infoAnswer">Seattle</span>
+                    Phone Number:  
+                    <span class="infoAnswer">206-992-2451</span> 
+                    Email: 
+                    <span class="infoAnswer">cocosack@gmail.com</span>
+                </p>
+                <br>
+                <a class="download" href="Resume.pdf" download="Resume.pdf">Download Resume</a>
+            </div>
+        </div>
+    </body>
 </html>

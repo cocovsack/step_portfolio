@@ -3,17 +3,61 @@ html, body {
   font-family: helvetica, sans-serif;
 }
 
-#index{
+body{
     position: absolute;
     margin: 0px;
-    overflow: hidden;
     top: 0px;
     bottom: 0px;
     right: 0px;
     left: 0px;
-    border-style: solid;
-    border-width: 15px;
-    border-color: black;
+}
+
+/* Frame */
+.frame {
+   position: fixed;
+   z-index: 990;
+   background-color: black;
+}
+
+#frametop {
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 15px;
+}
+
+#frameright {
+   top: 0;
+   bottom: 0;
+   right: 0;
+   width: 15px;
+}
+
+#framebottom {
+   bottom: 0;
+   left: 0;
+   width: 100%;
+   height: 15px;
+}
+
+#frameleft {
+   top: 0;
+   bottom: 0;
+   left: 0;
+   width: 15px;
+}
+
+/*Each Page */
+#index{
+    overflow: hidden;
+}
+
+#resume{
+    overflow: auto;
+}
+
+#about{
+    overflow: auto;
 }
 
 #content {
@@ -22,13 +66,11 @@ html, body {
   height: 100%;
 }
 
-#fact-container {
-  margin-top: 20px;
-}
-
 .container{
     display: inline;
 }
+
+/*Images*/
 .titleImage {
     max-height: 500px;
     max-width: 500px;
@@ -38,7 +80,23 @@ html, body {
     position: absolute;
 }
 
-/* Title Font*/
+.rectImage {
+    float: left;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.aboutImg {
+    display: block;
+    width: auto;    
+    height: 100%;
+    margin-left: -23%
+}
+
+/* Title*/
 h1{
     color:black;
     text-align: center;
@@ -49,17 +107,32 @@ h1{
     padding-top: 20%;
 }
 
+/* Sub-titles*/
+h2{
+    color:black;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'BlackJack', helvetica, sans-serif;
+    font-size:80px;
+    letter-spacing: 3px;
+    padding-top: 20%;
+}
+
 /* Navigation Bar */
 ul li {
-	float: left;
+    float: left;
 	list-style: none;
 	margin-right: 1em;
 	font-family: 'BlackJack', helvetica, sans-serif;
 	font-size: 25px;
-	padding: 12px; 
+    padding-left: 0px;
+	padding-top: 40px; 
+    padding-right: 80px;
+    padding-bottom: 40px; 
 }
 
 li a {
+    position:fixed;
 	color:black;
 	text-decoration: none;
 	float: left;
@@ -69,11 +142,91 @@ li a:hover {
 	color: pink;
 }
 
+/*About Text Box */
+#aboutContainer{
+    display: inline-block;
+    width: 800px;
+    text-align: center;
+    padding-top:200px;
+    padding-bottom:50px;
+    padding-right:200px;
+    padding-left:200px;
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: 500px;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    overflow:auto;
+}
+
+h3{
+    font-family: 'BlackJack', helvetica, sans-serif;
+    color:pink;
+    text-align: left;
+    text-transform: uppercase;
+    font-size:40px;
+    letter-spacing: 3px;
+    padding-top: 20%; 
+}
+
+.aboutText{
+    font-family: 'Teko', helvetica, sans-serif;
+    font-size: 17px;
+    letter-spacing:2px;
+    margin-left: 210px;
+}
+
+.infoText{
+    font-family: 'BlackJack', helvetica, sans-serif;
+    font-size: 17px;
+    color:pink;
+    letter-spacing:2px;
+}
+
+.infoAnswer{
+    font-family: 'Teko', helvetica, sans-serif;
+    padding-right: 25px;
+    font-size: 17px;
+    color:black;
+    letter-spacing:2px;
+}
+
+/*Button*/
+.download{
+    background-color: pink;
+    color: white;
+    font-family: 'BlackJack', helvetica, sans-serif;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    font-size: 23px;
+    margin-left: 4px;
+    margin-top: 2px;
+    opacity: 0.6;
+    transition: 0.3s;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.download:hover {
+    opacity: 1
+}
 
 /*Fonts*/
 @font-face {
  font-family: 'BlackJack';
- src: url('blackjack.otf');
+ src: url('norwester.otf');
  font-weight: normal;
  font-style: normal;
 }
+
+@font-face {
+ font-family: 'Teko';
+ src: url('rajdhani-medium.ttf');
+ font-weight: normal;
+ font-style: normal;
+}
+
