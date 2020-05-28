@@ -19,7 +19,7 @@ function addRandomFact() {
   const facts =
       ['I am 20 years old!', 'I have a little brother', 'I was born in Boston', 'I didn\'t own a cell phone until I was 18 years old'];
 
-  // Pick a random greeting.
+  // Pick a random fact.
   const fact = facts[Math.floor(Math.random() * facts.length)];
 
   // Add it to the page.

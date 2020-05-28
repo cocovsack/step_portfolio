@@ -1,244 +1,228 @@
 html, body {
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
   font-family: helvetica, sans-serif;
+  overflow: auto;
 }
 
 body{
-    position: absolute;
-    margin: 0px;
-    top: 0px;
-    bottom: 0px;
-    right: 0px;
-    left: 0px;
+  bottom: 0px;
+  left: 0px;
+  margin: 0px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
 }
 
 /* Frame */
 .frame {
-   position: fixed;
-   z-index: 990;
-   background-color: black;
+  background-color: black;
+  position: fixed;
+  z-index: 990;
 }
 
-#frametop {
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 15px;
+#frame-top {
+  height: 15px;
+  left: 0;
+  top: 0;
+  width: 100%;
 }
 
-#frameright {
-   top: 0;
+#frame-right {
+  bottom: 0;
+  right: 0;
+  top: 0;
+  width: 15px;
+}
+
+#frame-bottom {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 15px;
+}
+
+#frame-left {
    bottom: 0;
-   right: 0;
+   left: 0;
+   top: 0;
    width: 15px;
 }
 
-#framebottom {
-   bottom: 0;
-   left: 0;
-   width: 100%;
-   height: 15px;
-}
-
-#frameleft {
-   top: 0;
-   bottom: 0;
-   left: 0;
-   width: 15px;
-}
-
-/*Each Page */
-#index{
-    overflow: hidden;
-}
-
-#resume{
-    overflow: auto;
-}
-
-#about{
-    overflow: auto;
+/* Basic Scroll and Layout */
+#index {
+  overflow: hidden;
 }
 
 #content {
+  height: 100%;
   margin-left: auto;
   margin-right: auto;
-  height: 100%;
-}
-
-.container{
-    display: inline;
-}
-
-/*Images*/
-.titleImage {
-    max-height: 500px;
-    max-width: 500px;
-    object-fit: cover;
-    right: 0px;
-    bottom: 0px;
-    position: absolute;
-}
-
-.rectImage {
-    float: left;
-    position: relative;
-    width: 200px;
-    height: 200px;
-    overflow: hidden;
-    border-radius: 50%;
-}
-
-.aboutImg {
-    display: block;
-    width: auto;    
-    height: 100%;
-    margin-left: -23%
-}
-
-/* Title*/
-h1{
-    color:black;
-    text-align: center;
-    text-transform: capitalize;
-    font-family: 'BlackJack', helvetica, sans-serif;
-    font-size:60px;
-    letter-spacing: 3px;
-    padding-top: 20%;
-}
-
-/* Sub-titles*/
-h2{
-    color:black;
-    text-align: center;
-    text-transform: uppercase;
-    font-family: 'BlackJack', helvetica, sans-serif;
-    font-size:80px;
-    letter-spacing: 3px;
-    padding-top: 20%;
 }
 
 /* Navigation Bar */
 ul li {
-    float: left;
-	list-style: none;
-	margin-right: 1em;
-	font-family: 'BlackJack', helvetica, sans-serif;
-	font-size: 25px;
-    padding-left: 0px;
-	padding-top: 40px; 
-    padding-right: 80px;
-    padding-bottom: 40px; 
+  float: left;
+  font-family: 'BlackJack', helvetica, sans-serif;
+  font-size: 25px;
+  list-style: none;
+  margin-right: 1em;
+  padding-left: 0px;
+  padding-top: 40px;
+  padding-right: 80px;
+  padding-bottom: 40px; 
 }
 
 li a {
-    position:fixed;
-	color:black;
-	text-decoration: none;
-	float: left;
+  color:black;
+  float: left;
+  position:fixed;
+  text-decoration: none;
 }
 
 li a:hover {
 	color: pink;
 }
 
+/* Images */
+.title-image {
+  bottom: 0px;
+  display: inline;
+  max-height: 500px;
+  max-width: 500px;
+  object-fit: cover;
+  position: absolute;
+  right: 0px;
+}
+
+.rect-image {
+  border-radius: 50%;
+  float: left;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  width: 200px;
+}
+
+.about-image {
+  display: block;
+  height: 100%;
+  margin-left: -23%;
+  width: auto;
+}
+
+/* Titles */
+h1{
+  color:black;
+  font-family: 'BlackJack', helvetica, sans-serif;
+  font-size: 60px;
+  letter-spacing: 3px;
+  padding-top: 20%;
+  text-align: center;
+  text-transform: capitalize;   
+}
+
+h2{
+  color:black;
+  font-family: 'BlackJack', helvetica, sans-serif;
+  font-size:80px;
+  letter-spacing: 3px;
+  padding-top: 20%;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+h3 {
+  color:pink;
+  font-family: 'BlackJack', helvetica, sans-serif;
+  font-size: 40px;
+  letter-spacing: 3px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+h4 {
+  font-family: 'Teko', helvetica, sans-serif;
+  font-size: 17px;
+  letter-spacing:2px;
+  margin-left: 210px;
+}
+
 /*About Text Box */
-#aboutContainer{
-    display: inline-block;
-    width: 800px;
-    text-align: center;
-    padding-top:200px;
-    padding-bottom:50px;
-    padding-right:200px;
-    padding-left:200px;
-    position:absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: 500px;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    overflow:auto;
+#about-container{
+  display: inline-block;
+  left: 50%;
+  margin-top: 500px;
+  margin-right: -50%;
+  overflow:auto;
+  padding-top:200px;
+  padding-bottom:50px;
+  padding-right:200px;
+  padding-left:200px;
+  position:absolute;
+  text-align: center;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;  
 }
 
-h3{
-    font-family: 'BlackJack', helvetica, sans-serif;
-    color:pink;
-    text-align: left;
-    text-transform: uppercase;
-    font-size:40px;
-    letter-spacing: 3px;
-    padding-top: 20%; 
+.about-header {
+  padding-top: 20%;
 }
 
-h4{
-    font-family: 'BlackJack', helvetica, sans-serif;
-    color:pink;
-    text-align: left;
-    text-transform: uppercase;
-    font-size:40px;
-    letter-spacing: 3px;
+.info-text {
+  color:pink;
+  font-family: 'BlackJack', helvetica, sans-serif;
+  font-size: 17px;
+  letter-spacing:2px;
 }
 
-.aboutText{
-    font-family: 'Teko', helvetica, sans-serif;
-    font-size: 17px;
-    letter-spacing:2px;
-    margin-left: 210px;
+.info-answer {
+  color:black;
+  font-family: 'Teko', helvetica, sans-serif;
+  font-size: 17px;
+  letter-spacing:2px;
+  padding-right: 25px;
 }
 
-.infoText{
-    font-family: 'BlackJack', helvetica, sans-serif;
-    font-size: 17px;
-    color:pink;
-    letter-spacing:2px;
-}
-
-.infoAnswer{
-    font-family: 'Teko', helvetica, sans-serif;
-    padding-right: 25px;
-    font-size: 17px;
-    color:black;
-    letter-spacing:2px;
-}
-
-/*Button*/
+/* Buttons */
 .download{
-    background-color: pink;
-    color: white;
-    font-family: 'BlackJack', helvetica, sans-serif;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    text-align: center;
-    font-size: 23px;
-    margin-left: 4px;
-    margin-top: 2px;
-    opacity: 0.6;
-    transition: 0.3s;
-    display: inline-block;
-    cursor: pointer;
+  background-color: pink;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'BlackJack', helvetica, sans-serif;
+  font-size: 23px;
+  margin-left: 4px;
+  margin-top: 2px;
+  opacity: 0.6;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-align: center;
+  transition: 0.3s;
 }
 
 .download:hover {
-    opacity: 1
+  opacity: 1
 }
 
 /*Timeline*/
-.timelineContainer{
-    display: inline-block;
-    width: 800px;
-    padding-top:300px;
-    padding-bottom:50px;
-    padding-right:200px;
-    padding-left:200px;
-    position:absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: 500px;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    overflow:auto;
+.timeline-container {
+  display: inline-block;
+  height:100%;
+  left: 50%;
+  margin-top: 500px;
+  margin-right: -50%;
+  overflow:auto;
+  padding-top:300px;
+  padding-bottom:50px;
+  padding-right:200px;
+  padding-left:200px;
+  position:absolute;
+  top: 50%;
+  width: 800px;
+  transform: translate(-50%, -50%);
 }
 
 .vertical{
@@ -289,15 +273,16 @@ hr.solid {
 
 /*Fonts*/
 @font-face {
- font-family: 'BlackJack';
- src: url('norwester.otf');
- font-weight: normal;
- font-style: normal;
+  font-family: 'BlackJack';
+  font-style: normal;
+  font-weight: normal;
+  src: url('norwester.otf');
+
 }
 
 @font-face {
- font-family: 'Teko';
- src: url('rajdhani-medium.ttf');
- font-weight: normal;
- font-style: normal;
+  font-family: 'Teko';
+  font-style: normal;
+  font-weight: normal;
+  src: url('rajdhani-medium.ttf');
 }
