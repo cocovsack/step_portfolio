@@ -170,6 +170,15 @@ h3{
     padding-top: 20%; 
 }
 
+h4{
+    font-family: 'BlackJack', helvetica, sans-serif;
+    color:pink;
+    text-align: left;
+    text-transform: uppercase;
+    font-size:40px;
+    letter-spacing: 3px;
+}
+
 .aboutText{
     font-family: 'Teko', helvetica, sans-serif;
     font-size: 17px;
@@ -215,6 +224,69 @@ h3{
     opacity: 1
 }
 
+/*Timeline*/
+.timelineContainer{
+    display: inline-block;
+    width: 800px;
+    padding-top:300px;
+    padding-bottom:50px;
+    padding-right:200px;
+    padding-left:200px;
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: 500px;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    overflow:auto;
+}
+
+.vertical{
+    border-left: 6px solid pink; 
+    height: 400px; 
+    position:absolute; 
+    left: 20%;
+}
+
+.timeline-item{
+    position:absolute; 
+    width: 800px;
+    text-align: left;
+    font-family: 'Teko', helvetica, sans-serif;
+    letter-spacing:1px;
+}
+
+hr.solid {
+    border-top: 4px solid pink;
+    float: left;
+    width: 100px;
+}
+
+.timeline-date{
+    font-size: 19px;
+    color: black;
+    padding-left: 15%;
+    margin-bottom: 0px;
+}
+
+.timeline-header{
+    font-size: 22px;
+    font-weight: bold;
+    font-family: 'BlackJack', helvetica, sans-serif;
+    text-transform: uppercase;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 10%;
+    color: pink;
+}
+.timeline-content{
+    font-size:15px;
+    color: black;
+    text-transform: none;
+    padding-left: 10%;
+    margin-top: 5px;
+}
+
 /*Fonts*/
 @font-face {
  font-family: 'BlackJack';
@@ -229,4 +301,3 @@ h3{
  font-weight: normal;
  font-style: normal;
 }
-
