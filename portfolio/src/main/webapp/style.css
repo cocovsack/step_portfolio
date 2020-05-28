@@ -4,13 +4,13 @@ html, body {
   overflow: auto;
 }
 
-body{
-  bottom: 0px;
-  left: 0px;
-  margin: 0px;
+body {
+  bottom: 0;
+  left: 0;
+  margin: 0;
   position: absolute;
-  right: 0px;
-  top: 0px;
+  right: 0;
+  top: 0;
 }
 
 /* Frame */
@@ -66,7 +66,7 @@ ul li {
   font-size: 25px;
   list-style: none;
   margin-right: 1em;
-  padding-left: 0px;
+  padding-left: 0;
   padding-top: 40px;
   padding-right: 80px;
   padding-bottom: 40px;
@@ -85,13 +85,13 @@ li a:hover {
 
 /* Images */
 .title-image {
-  bottom: 0px;
+  bottom: 0;
   display: inline;
   max-height: 500px;
   max-width: 500px;
   object-fit: cover;
   position: absolute;
-  right: 0px;
+  right: 0;
 }
 
 .rect-image {
@@ -126,7 +126,7 @@ li a:hover {
 }
 
 /* Titles */
-h1{
+h1 {
   color:black;
   font-family: 'BlackJack', helvetica, sans-serif;
   font-size: 60px;
@@ -136,7 +136,7 @@ h1{
   text-transform: capitalize;   
 }
 
-h2{
+h2 {
   color:black;
   font-family: 'BlackJack', helvetica, sans-serif;
   font-size:80px;
@@ -163,7 +163,7 @@ h4 {
 }
 
 /*About Text Box */
-#about-container{
+#about-container {
   display: inline-block;
   left: 50%;
   margin-top: 500px;
@@ -200,7 +200,7 @@ h4 {
 }
 
 /* Buttons */
-.download{
+.download {
   background-color: pink;
   color: white;
   cursor: pointer;
@@ -223,7 +223,6 @@ h4 {
 }
 
 /*Timeline*/
-
 .timeline-container {
   display: inline-block;
   height:auto;
@@ -242,7 +241,7 @@ h4 {
 }
 
 #nonfirst-timeline {
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 .vertical {
@@ -271,7 +270,7 @@ hr.solid {
 .timeline-date {
   color: black;
   font-size: 19px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
   padding-left: 15%;
 }
 
@@ -286,6 +285,7 @@ hr.solid {
   text-transform: uppercase;
 
 }
+
 .timeline-content {
   color: black;
   font-size: 15px;
