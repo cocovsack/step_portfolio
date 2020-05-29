@@ -116,13 +116,13 @@ li a:hover {
     left: 50%;
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
-    color: black;
     margin-top: 200px;
     height: 200px;
 }
-.icon {
+#icon {
     margin-left: 30px;
     margin-right: 30px;
+    color: pink;
 }
 
 /* Titles */

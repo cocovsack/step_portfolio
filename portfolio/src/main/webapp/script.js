@@ -13,21 +13,10 @@
 // limitations under the License.
 
 /**
- * Adds a random greeting to the page.
+ * Prints and deletes rotating strings that self-describe
  */
-function addRandomFact() {
-  const facts =
-      ['I am 20 years old!', 'I have a little brother', 'I was born in Boston', 'I didn\'t own a cell phone until I was 18 years old'];
 
-  // Pick a random fact.
-  const fact = facts[Math.floor(Math.random() * facts.length)];
-
-  // Add it to the page.
-  const factContainer = document.getElementById('fact-container');
-  factContainer.innerText = fact;
-}
-
-//immediately after window loads, call function
+/*Immediately after window loads, call function on array of strings and period*/
 window.onload = function() {
   var text_elements = document.getElementsByClassName('txt-rotate');
   for (var i = 0; i < text_elements.length; i++) {
@@ -37,13 +26,9 @@ window.onload = function() {
       new TxtRotate(text_elements[i], JSON.parse(toRotate), period);
     }
   }
-  // INJECT CSS
-  var css = document.createElement("style");
-  css.type = "text/css";
-  css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
-  document.body.appendChild(css);
 }
 
+/*Initialize object*/
 var TxtRotate = function(el, toRotate, period) {
   this.toRotate = toRotate;
   this.el = el;
@@ -54,6 +39,7 @@ var TxtRotate = function(el, toRotate, period) {
   this.isDeleting = false;
 };
 
+/*Print, wait the period, then delete*/
 TxtRotate.prototype.tick = function() {
   var i = this.loopNum % this.toRotate.length;
   var fullTxt = this.toRotate[i];
@@ -77,11 +63,10 @@ TxtRotate.prototype.tick = function() {
   } else if (this.isDeleting && this.txt === '') {
     this.isDeleting = false;
     this.loopNum++;
-    delta = 500;
+    delta = 400;
   }
 
   setTimeout(function() {
     that.tick();
   }, delta);
 }
-
