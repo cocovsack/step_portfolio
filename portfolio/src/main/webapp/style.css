@@ -37,15 +37,15 @@ body {
 #frame-bottom {
   bottom: 0;
   left: 0;
-  width: 100%;
   height: 15px;
+  width: 100%;
 }
 
 #frame-left {
-   bottom: 0;
-   left: 0;
-   top: 0;
-   width: 15px;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  width: 15px;
 }
 
 /* Basic Scroll and Layout */
@@ -111,18 +111,19 @@ li a:hover {
 }
 
 .social-icon {
-    display: inline-block;
-    position: absolute;
-    left: 50%;
-    -ms-transform: translateX(-50%);
-    transform: translateX(-50%);
-    margin-top: 200px;
-    height: 200px;
+  display: inline-block;
+  height: 200px;
+  left: 50%;
+  margin-top: 200px;
+  -ms-transform: translateX(-50%);
+  position: absolute;
+  transform: translateX(-50%);
 }
-#icon {
-    margin-left: 30px;
-    margin-right: 30px;
-    color: pink;
+.icon-linkedin-sign, .icon-github-sign, .icon-envelope {
+  color: pink;
+  font-size: 50px;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 /* Titles */
@@ -158,22 +159,22 @@ h3 {
 h4 {
   font-family: 'Teko', helvetica, sans-serif;
   font-size: 17px;
-  letter-spacing:2px;
+  letter-spacing: 2px;
   margin-left: 210px;
 }
 
-/*About Text Box */
+/* About Text Box */
 #about-container {
   display: inline-block;
   left: 50%;
   margin-top: 500px;
   margin-right: -50%;
-  overflow:auto;
-  padding-top:200px;
-  padding-bottom:50px;
-  padding-right:200px;
-  padding-left:200px;
-  position:absolute;
+  overflow: auto;
+  padding-top: 200px;
+  padding-bottom: 50px;
+  padding-right: 200px;
+  padding-left: 200px;
+  position: absolute;
   text-align: center;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -195,7 +196,7 @@ h4 {
   color:black;
   font-family: 'Teko', helvetica, sans-serif;
   font-size: 17px;
-  letter-spacing:2px;
+  letter-spacing: 2px;
   padding-right: 25px;
 }
 
@@ -222,10 +223,10 @@ h4 {
   opacity: 1
 }
 
-/*Timeline*/
+/* Timeline */
 .timeline-container {
   display: inline-block;
-  height:auto;
+  height: auto;
   left: 50%;
   margin-top: 500px;
   margin-right: -50%;
@@ -248,17 +249,17 @@ h4 {
   border-left: 6px solid pink; 
   height: 600px; 
   left: 20%;
-  position:absolute; 
+  position: absolute; 
 }
 
 #timeline-item {
   font-family: 'Teko', helvetica, sans-serif;
+  height: auto;  
   letter-spacing: 1px;
+  margin-bottom: 100px;
   position: relative; 
   text-align: left;
   width: 800px;
-  height: auto;
-  margin-bottom: 100px;
 }
 
 hr.solid {
@@ -296,7 +297,7 @@ hr.solid {
   width: 450px;
 }
 
-/*Fonts*/
+/* Fonts */
 @font-face {
   font-family: 'BlackJack';
   font-style: normal;

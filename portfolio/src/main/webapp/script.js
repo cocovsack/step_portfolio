@@ -16,7 +16,7 @@
  * Prints and deletes rotating strings that self-describe
  */
 
-/*Immediately after window loads, call function on array of strings and period*/
+/* Immediately after window loads, call function on array of strings and period */
 window.onload = function() {
   var text_elements = document.getElementsByClassName('txt-rotate');
   for (var i = 0; i < text_elements.length; i++) {
@@ -28,7 +28,7 @@ window.onload = function() {
   }
 }
 
-/*Initialize object*/
+/* Initialize object */
 var TxtRotate = function(el, toRotate, period) {
   this.toRotate = toRotate;
   this.el = el;
@@ -39,7 +39,7 @@ var TxtRotate = function(el, toRotate, period) {
   this.isDeleting = false;
 };
 
-/*Print, wait the period, then delete*/
+/* Print, wait the period, then delete */
 TxtRotate.prototype.tick = function() {
   var i = this.loopNum % this.toRotate.length;
   var fullTxt = this.toRotate[i];
@@ -50,7 +50,7 @@ TxtRotate.prototype.tick = function() {
     this.txt = fullTxt.substring(0, this.txt.length + 1);
   }
 
-  this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+  this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
 
   var that = this;
   var delta = 300 - Math.random() * 100;
