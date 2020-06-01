@@ -16,9 +16,24 @@
  * Generates a greeting to the user from the DataServlet server and adds it to the DOM
  */
 function getGreeting() {
-  fetch('/data').then(response => response.text()).then((message) => {
-    document.getElementById('message-container').innerText = message;
+  fetch('/comment').then(response => response.json()).then((messages) => {
+    const messageElement = document.getElementById('message-container');
+
+    messageElement.innerHTML = '';
+    messageElement.appendChild(
+        createListElement('Message: ' + messages[0]));
+    messageElement.appendChild(
+        createListElement('Message: ' + messages[1]));
+    messageElement.appendChild(
+        createListElement('Message: ' + messages[2]));
   });
+}
+
+/** Creates an <li> element containing text. */
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
 }
 
 /**
