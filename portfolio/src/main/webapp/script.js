@@ -13,19 +13,15 @@
 // limitations under the License.
 
 /**
- * Generates a greeting to the user from the DataServlet server and adds it to the DOM
+ * Gets past comment history from the DataServlet server and adds it to the DOM
  */
-function getGreeting() {
+function getHistory() {
   fetch('/comment').then(response => response.json()).then((messages) => {
-    const messageElement = document.getElementById('message-container');
+    const historyElement = document.getElementById('history');
 
-    messageElement.innerHTML = '';
-    messageElement.appendChild(
-        createListElement('Message: ' + messages[0]));
-    messageElement.appendChild(
-        createListElement('Message: ' + messages[1]));
-    messageElement.appendChild(
-        createListElement('Message: ' + messages[2]));
+    messages.forEach((line) => {
+      historyElement.appendChild(createListElement(line));
+    });
   });
 }
 

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Comments</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+  </head>
+  <body onload = "getHistory()" id = "comment">
+    <div id="frame-top" class="frame"></div>
+    <div id="frame-bottom" class="frame"></div>
+    <div id="frame-right" class="frame"></div>
+    <div id="frame-left" class="frame"></div>
+    <ul id="nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div id="content">
+      <h2>
+        <span
+            class="txt-rotate"
+            data-period="10000"
+            data-rotate='["Comment" ]'></span>
+      </h2>
+      <ul id="history"></ul>
+      <form action="/comment" method="POST">
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="fname"><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname">
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" name="fname"><br>
+        <label for="comment">Message:</label><br>
+        <input type="text" id="comment" name="comment"><br>
+        <br/><br/>
+        <input type="submit" />
+      </form>
+      <!-- <button onclick="getGreeting()">Say hi!</button>
+      <div id="message-container"></div> -->
+    </div>
+  </body>
+</html>
+
+
+
+
+
+      
+
+      

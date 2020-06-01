@@ -31,9 +31,6 @@ public class DataServlet extends HttpServlet {
   @Override
   public void init() {
     messages = new ArrayList<String>();
-    messages.add("Hello, my name is Coco Sack");
-    messages.add("I am 20 years old");
-    messages.add("I am from Seattle, Washington");
   }
 
   @Override
@@ -46,6 +43,29 @@ public class DataServlet extends HttpServlet {
     response.getWriter().println(json);
   }
 
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get the input from the form.
+    String comment = getParameter(request, "comment", "");
+    String name = getParameter(request, "fname", "");
+
+    messages.add(comment);
+
+    response.sendRedirect("/comment.html");
+
+  }
+
+  /**
+   * @return the request parameter, or the default value if the parameter
+   *         was not specified by the client
+   */
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    String value = request.getParameter(name);
+    if (value == null) {
+      return defaultValue;
+    }
+    return value;
+  }
    /**
    * Converts a messages instance into a JSON string using the Gson library.
    */
