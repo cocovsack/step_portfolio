@@ -13,6 +13,15 @@
 // limitations under the License.
 
 /**
+ * Generates a greeting to the user from the DataServlet server and adds it to the DOM
+ */
+function getGreeting() {
+  fetch('/data').then(response => response.text()).then((message) => {
+    document.getElementById('message-container').innerText = message;
+  });
+}
+
+/**
  * Prints and deletes rotating strings that self-describe
  */
 
