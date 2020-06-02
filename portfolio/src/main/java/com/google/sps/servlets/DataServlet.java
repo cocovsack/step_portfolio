@@ -55,7 +55,7 @@ public class DataServlet extends HttpServlet {
     datastore.put(commentEntity);
 
     // Redirect
-    response.sendRedirect("/comment.html");
+    response.sendRedirect("/history.html");
   }
 
 

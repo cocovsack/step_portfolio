@@ -208,6 +208,7 @@ h4 {
   display: inline-block;
   font-family: 'BlackJack', helvetica, sans-serif;
   font-size: 23px;
+  margin-bottom: 15px;
   margin-left: 4px;
   margin-top: 2px;
   opacity: 0.6;
@@ -299,24 +300,51 @@ hr.solid {
 
 /* Form */
 .form-container {
+  font-family: 'Teko', helvetica, sans-serif;
   margin-top: 500px;
   margin-left: 10%;
   margin-right: 10%;
   text-align: center;
 }
 
-input[type=text] {
-  padding: 12px 20px;
+#history-container {
+  font-size: 20px;
+  margin-top: 100px;
+  margin-left: 25%;
+  text-align: center;
+  width: 70%;
+}
+
+.comment {
+  font-family: 'Teko', helvetica, sans-serif;
+  margin-top: 17px;
+  text-align: center;
+}
+
+input[type=text], .textarea {
+  border: 1px solid #ccc;
   margin: 8px 0;
+  padding: 12px 20px;
   width: 100%;
 }
 
-input[type=text]:focus {
+input[type=text]:focus, .textarea:focus {
   border: 3px solid pink;
 }
 
-#message {
-  height: 200px;
+.textarea {
+  background-color: white;
+  display: block;
+  line-height: 20px;
+  min-height: 40px;
+  overflow: hidden;
+  resize: both;
+  text-align: left;
+  width: 100%;
+}
+
+.textarea[contenteditable]:empty::before {
+  content: "Write message to Coco here.";
 }
 
 label { 
@@ -327,6 +355,7 @@ label {
   text-transform: uppercase;
   text-align: left; 
 }
+
 
 /* Fonts */
 @font-face {

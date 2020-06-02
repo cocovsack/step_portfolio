@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Comment History</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+  </head>
+  <body id = "history">
+    <div id="frame-top" class="frame"></div>
+    <div id="frame-bottom" class="frame"></div>
+    <div id="frame-right" class="frame"></div>
+    <div id="frame-left" class="frame"></div>
+    <ul id="nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div id="content">
+      <div class="form-container">
+          <h4>How many comments would you like displayed?</h4>
+          <input type="number" id="comment-number" name="comment-number" required><br>
+          <br/><br/>
+          <button class = "download" onclick="getCommentHistory()" >Display Comment History</button>
+        <br/><br/>
+        <div id="history-container"></div>
+      </div>
+    </div>
+  </body>
+</html>
+

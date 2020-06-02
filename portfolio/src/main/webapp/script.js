@@ -16,10 +16,26 @@
  * Gets past comment history from the DataServlet server and adds it to the DOM
  */
 function getCommentHistory() {
-  fetch('/history').then(response => response.json()).then((comments) => {
-    const historyElement = document.getElementById('history');
+    fetch('/history?comment-number=' + document.getElementById('comment-number').value).then(response => response.json()).then((comments) => {
+    console.log(comments);
+    const historyElement = document.getElementById('history-container');
+    
+    // Delete the old history list if it exists
+    const historyList = document.getElementsByClassName('history')[0];
+    console.log(historyList);
+    if (historyList !== undefined){
+      while (historyList.firstChild) {
+        historyList.removeChild(historyList.firstChild);
+      }
+      historyElement.removeChild(historyElement.firstChild);
+    }
+
+    // Make new history list
+    var node = document.createElement("ul");
+    node.className = 'history';
+    historyElement.appendChild(node);
     comments.forEach((comment) => {
-      historyElement.appendChild(createHistoryElement(comment));
+      node.appendChild(createHistoryElement(comment));
     })
   });
 }
@@ -30,7 +46,7 @@ function createHistoryElement(comment) {
   historyElement.className = 'comment';
 
   const titleElement = document.createElement('span');
-  titleElement.innerText = comment.message;
+  titleElement.innerText = "* " + comment.message + " by " + comment.name + " on " + comment.timestamp;
 
 //   const deleteButtonElement = document.createElement('button');
 //   deleteButtonElement.innerText = 'Delete';
