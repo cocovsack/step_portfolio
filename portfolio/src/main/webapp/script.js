@@ -15,22 +15,56 @@
 /**
  * Gets past comment history from the DataServlet server and adds it to the DOM
  */
-function getHistory() {
-  fetch('/comment').then(response => response.json()).then((messages) => {
+function getCommentHistory() {
+  fetch('/history').then(response => response.json()).then((comments) => {
     const historyElement = document.getElementById('history');
-
-    messages.forEach((line) => {
-      historyElement.appendChild(createListElement(line));
-    });
+    comments.forEach((comment) => {
+      historyElement.appendChild(createHistoryElement(comment));
+    })
   });
 }
 
-/** Creates an <li> element containing text. */
-function createListElement(text) {
-  const liElement = document.createElement('li');
-  liElement.innerText = text;
-  return liElement;
+/** Creates an element that represents a task, including its delete button. */
+function createHistoryElement(comment) {
+  const historyElement = document.createElement('li');
+  historyElement.className = 'comment';
+
+  const titleElement = document.createElement('span');
+  titleElement.innerText = comment.message;
+
+//   const deleteButtonElement = document.createElement('button');
+//   deleteButtonElement.innerText = 'Delete';
+//   deleteButtonElement.addEventListener('click', () => {
+//     deleteHistory(comment);
+
+//     // Remove the task from the DOM.
+//     historyElement.remove();
+//  });
+
+  historyElement.appendChild(titleElement);
+  //taskElement.appendChild(deleteButtonElement);
+  return historyElement;
 }
+
+// /** Tells the server to delete the task. */
+// function deleteTask(task) {
+//   const params = new URLSearchParams();
+//   params.append('id', task.id);
+//   fetch('/delete-task', {method: 'POST', body: params});
+// }
+
+//     messages.forEach((line) => {
+//       historyElement.appendChild(createListElement(line));
+//     });
+//   });
+// }
+
+// /** Creates an <li> element containing text. */
+// function createListElement(text) {
+//   const liElement = document.createElement('li');
+//   liElement.innerText = text;
+//   return liElement;
+// }
 
 /**
  * Prints and deletes rotating strings that self-describe

@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body onload = "getHistory()" id = "comment">
+  <body id = "comment">
     <div id="frame-top" class="frame"></div>
     <div id="frame-bottom" class="frame"></div>
     <div id="frame-right" class="frame"></div>
@@ -24,29 +24,21 @@
             data-period="10000"
             data-rotate='["Comment" ]'></span>
       </h2>
-      <ul id="history"></ul>
-      <form action="/comment" method="POST">
-        <label for="fname">First name:</label><br>
-        <input type="text" id="fname" name="fname"><br>
-        <label for="lname">Last name:</label><br>
-        <input type="text" id="lname" name="lname">
-        <label for="email">Email:</label><br>
-        <input type="text" id="email" name="fname"><br>
-        <label for="comment">Message:</label><br>
-        <input type="text" id="comment" name="comment"><br>
+      <div class="form-container">
+        <form action="/comment" method="POST">
+          <label for="name">Name:</label><br>
+          <input type="text" id="name" name="name" required><br>
+          <label for="email">Email:</label><br>
+          <input type="text" id="email" name="email" required><br>
+          <label for="message">Message:</label><br>
+          <input type="text" id="message" name="message" required><br>
+          <br/><br/>
+          <input class = "download" type="submit"/>
+        </form>
+        <button onclick = "getCommentHistory()" class = "download" id="show_history">Click for Comment History</button>
         <br/><br/>
-        <input type="submit" />
-      </form>
-      <!-- <button onclick="getGreeting()">Say hi!</button>
-      <div id="message-container"></div> -->
+        <ul id="history"></ul>
+      </div>
     </div>
   </body>
 </html>
-
-
-
-
-
-      
-
-      

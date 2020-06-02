@@ -297,6 +297,37 @@ hr.solid {
   width: 450px;
 }
 
+/* Form */
+.form-container {
+  margin-top: 500px;
+  margin-left: 10%;
+  margin-right: 10%;
+  text-align: center;
+}
+
+input[type=text] {
+  padding: 12px 20px;
+  margin: 8px 0;
+  width: 100%;
+}
+
+input[type=text]:focus {
+  border: 3px solid pink;
+}
+
+#message {
+  height: 200px;
+}
+
+label { 
+  color:pink;
+  font-family: 'BlackJack', helvetica, sans-serif;
+  font-size: 40px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-align: left; 
+}
+
 /* Fonts */
 @font-face {
   font-family: 'BlackJack';

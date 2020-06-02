@@ -31,37 +31,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-/* Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/comment")
-public class DataServlet extends HttpServlet {
-  
+/** Servlet that returns some example content. */
+@WebServlet("/history")
+public class HistoryServlet extends HttpServlet {
+    
   @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // Get the input from the form.
-    String name = getParameter(request, "name", "");
-    String email = getParameter(request, "email", "");
-    String message = getParameter(request, "message", "");
-    long timestamp = System.currentTimeMillis();
-
-
-    // Store with Datastore
-    Entity commentEntity = new Entity("Comment");
-    commentEntity.setProperty("email", email);
-    commentEntity.setProperty("timestamp", timestamp);
-    commentEntity.setProperty("name", name);
-    commentEntity.setProperty("message", message);
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(commentEntity);
+    PreparedQuery results = datastore.prepare(query);
 
-    // Redirect
-    response.sendRedirect("/comment.html");
-  }
+    List<Comment> comments = new ArrayList<>();
+    for (Entity entity : results.asIterable()) {
+      long id = entity.getKey().getId();
+      String name = (String) entity.getProperty("name");
+      String email = (String) entity.getProperty("email");
+      String message = (String) entity.getProperty("message");
+      long timestamp = (long) entity.getProperty("timestamp");
 
+      Comment comment = new Comment(id, name, email, message, timestamp);
+      comments.add(comment);
+    }
 
-  /* Returns parameter value given its name */
-  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
-    String value = request.getParameter(name);
-    return value;
+    Gson gson = new Gson();
+
+    response.setContentType("application/json;");
+    response.getWriter().println(gson.toJson(comments));
   }
 }
