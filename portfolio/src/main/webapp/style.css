@@ -309,15 +309,22 @@ hr.solid {
 
 #history-container {
   font-size: 20px;
-  margin-top: 100px;
-  margin-left: 25%;
+  margin-bottom: 50px;
+  margin-top: 20px;
+  overflow: hidden;
   text-align: center;
   width: 70%;
+}
+
+.history {
+  padding: 0;
+  overflow: hidden;
 }
 
 .comment {
   font-family: 'Teko', helvetica, sans-serif;
   margin-top: 17px;
+  padding-top: 0;
   text-align: center;
 }
 
