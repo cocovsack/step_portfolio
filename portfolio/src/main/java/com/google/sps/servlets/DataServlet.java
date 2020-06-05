@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-/* Servlet that returns some example content. TODO: modify this file to handle comments data */
+/* Servlet that returns some example content. */
 @WebServlet("/comment")
 public class DataServlet extends HttpServlet {
   
@@ -42,7 +42,6 @@ public class DataServlet extends HttpServlet {
     String email = getParameter(request, "email", "");
     String message = getParameter(request, "message", "");
     long timestamp = System.currentTimeMillis();
-
 
     // Store with Datastore
     Entity commentEntity = new Entity("Comment");
