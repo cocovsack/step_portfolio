@@ -12,36 +12,55 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+function getLogin() {
+  fetch('/login').then(response => response.json()).then((account) => {
+    console.log(account);
+    loginLink = document.getElementById("login-link");
+    //If not logged in
+    if(account.loggedIn == false) {
+      loginLink.href = account.loginUrl;
+      loginLink.innerText = "Login";
+      document.getElementById("form-container").style.display ="none";
+    }
+    //If logged in
+    else {
+      loginLink.href = account.loginUrl;
+      loginLink.innerText = "Logout";
+      document.getElementById("form-container").style.display ="block";
+    }
+    console.log(account.email);
+  });
+}
 
 /* Gets past comment history from the DataServlet server and adds it to the DOM */
 function getCommentHistory() {
-    // Show the title
-    const hiddenElement = document.getElementById('hidden');
-    hiddenElement.style.display = 'block';
+  // Show the title
+  const hiddenElement = document.getElementById('hidden');
+  hiddenElement.style.display = 'block';
 
-    // Fetch the comments
-    const commentNumberElement = document.getElementById('comment-number');
-    const sortParamElement = document.getElementById('sort-param');
+  // Fetch the comments
+  const commentNumberElement = document.getElementById('comment-number');
+  const sortParamElement = document.getElementById('sort-param');
 
-    fetch('/history?comment-number=' + commentNumberElement.value + '&sort-param=' + sortParamElement.value).then(response => response.json()).then((comments) => {
-    const historyElement = document.getElementById('history-container');
+  fetch('/history?comment-number=' + commentNumberElement.value + '&sort-param=' + sortParamElement.value).then(response => response.json()).then((comments) => {
+  const historyElement = document.getElementById('history-container');
     
-    // Delete the old history list if it exists
-    const historyList = document.getElementsByClassName('history')[0];
-    if (historyList !== undefined){
-      while (historyList.firstChild) {
-        historyList.removeChild(historyList.firstChild);
-      }
-      historyElement.removeChild(historyElement.firstChild);
+  // Delete the old history list if it exists
+  const historyList = document.getElementsByClassName('history')[0];
+  if (historyList !== undefined){
+    while (historyList.firstChild) {
+      historyList.removeChild(historyList.firstChild);
     }
+    historyElement.removeChild(historyElement.firstChild);
+  }
 
-    // Make new history list
-    var node = document.createElement('ul');
-    node.className = 'history';
-    historyElement.appendChild(node);
-    comments.forEach((comment) => {
-      node.appendChild(createHistoryElement(comment));
-    })
+  // Make new history list
+  var node = document.createElement('ul');
+  node.className = 'history';
+  historyElement.appendChild(node);
+  comments.forEach((comment) => {
+    node.appendChild(createHistoryElement(comment));
+  })
   });
 }
 

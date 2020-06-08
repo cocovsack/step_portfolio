@@ -22,6 +22,7 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.annotation.WebServlet;
@@ -29,37 +30,40 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@WebServlet("/login")
+public class LoginServlet extends HttpServlet {
 
-/* Servlet that returns some comment data. */
-@WebServlet("/comment")
-public class DataServlet extends HttpServlet {
+  public final class loginStats {
+
+    private final boolean loggedIn;
+    private final String loginUrl;
+    private final String email;
+
+    public loginStats(boolean loggedIn, String loginUrl, String email)
+    {
+      this.loggedIn = loggedIn;
+      this.loginUrl = loginUrl;
+      this.email = email;
+    }
+  }
 
   @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    response.setContentType("applicaiton/json");
+    UserService userService = UserServiceFactory.getUserService();
+    Gson gson = new Gson();
 
-    // Get the input from the form.
-    String name = getParameter(request, "name", "");
-    String email = getParameter(request, "email", "");
-    String message = getParameter(request, "message", "");
-    long timestamp = System.currentTimeMillis();
-
-    // Store with Datastore
-    Entity commentEntity = new Entity("Comment");
-    commentEntity.setProperty("email", email);
-    commentEntity.setProperty("timestamp", timestamp);
-    commentEntity.setProperty("name", name);
-    commentEntity.setProperty("message", message);
-
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(commentEntity);
-
-    // Redirect TODO might change this!!!!
-    response.sendRedirect("/history.html");
-  }
-  
-  /* Returns parameter value given its name */
-  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
-    String value = request.getParameter(name);
-    return value;
+    loginStats account;
+    // If user is logged in, create information 
+    if (userService.isUserLoggedIn()) {
+      String email = userService.getCurrentUser().getEmail();
+      String url = userService.createLogoutURL("/comment.html");
+      account = new loginStats(true, url, email);
+    }
+    else {
+      String url = userService.createLoginURL("/index.html");
+      account = new loginStats(false, url, null);
+    }
+    response.getWriter().println(gson.toJson(account));
   }
 }
