@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <title>Comment History</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body id="index">
+  <body id = "history">
     <div id="frame-top" class="frame"></div>
     <div id="frame-bottom" class="frame"></div>
     <div id="frame-right" class="frame"></div>
@@ -16,16 +16,17 @@
       <li><a href="about.html">About</a></li>
       <li><a href="resume.html">Resume</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="comment.html">Comment</a></li>
     </ul>
     <div id="content">
-      <h1> I am
-      <span
-          class="txt-rotate"
-          data-period="2000"
-          data-rotate='["Coco Sack", "a Seattleite", "inquisitive", "a people-person", "a Yalie","a perfectionist", "a foodie", "perceptive"]'></span>
-      </h1>
-      <img class="title-image" src = "/images/Coco2.png" alt="Coco Photo">
+      <div class="form-container">
+          <h4>How many comments would you like displayed?</h4>
+          <input type="number" id="comment-number" name="comment-number" required><br>
+          <br/><br/>
+          <button class = "download" onclick="getCommentHistory()" >Display Comment History</button>
+        <br/><br/>
+        <div id="history-container"></div>
+      </div>
     </div>
   </body>
 </html>
+

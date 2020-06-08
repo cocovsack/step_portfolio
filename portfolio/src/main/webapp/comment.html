@@ -2,12 +2,11 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Contact</title>
+    <title>Comments</title>
     <link rel="stylesheet" href="style.css">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <script src="script.js"></script>
   </head>
-  <body id = contact>
+  <body id = "comment">
     <div id="frame-top" class="frame"></div>
     <div id="frame-bottom" class="frame"></div>
     <div id="frame-right" class="frame"></div>
@@ -23,13 +22,21 @@
         <span
             class="txt-rotate"
             data-period="10000"
-            data-rotate='["Contact" ]'></span>
+            data-rotate='["Comment" ]'></span>
       </h2>
-      <div class="social-icon">
-        <a href="https://www.linkedin.com/in/cocosack/"> <i class="icon-linkedin-sign"></i></a>
-        <a href="https://github.com/cocovsack/step_portfolio"> <i class="icon-github-sign"></i></a>
-        <a href="mailto: cocosack@gmail.com"> <i class="icon-envelope"></i></a>
+      <div class="form-container">
+        <form action="/comment" method="POST">
+          <label for="name">Name:</label><br>
+          <input type="text" id="name" name="name" required><br>
+          <label for="email">Email:</label><br>
+          <input type="text" id="email" name="email" required><br>
+          <label for="message">Message:</label><br>
+          <textarea id="message" name="message" rows="20" role="textbox" contenteditable></textarea>
+          <br/><br/>
+          <input class = "download" type="submit"/>
+        </form>
       </div>
     </div>
   </body>
 </html>
+

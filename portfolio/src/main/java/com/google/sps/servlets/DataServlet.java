@@ -14,19 +14,54 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.sps.data.Comment;
+import com.google.gson.Gson;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/data")
+
+/* Servlet that returns some example content. TODO: modify this file to handle comments data */
+@WebServlet("/comment")
 public class DataServlet extends HttpServlet {
-
+  
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
-    response.getWriter().println("<h1>Hello Coco!</h1>");
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get the input from the form.
+    String name = getParameter(request, "name", "");
+    String email = getParameter(request, "email", "");
+    String message = getParameter(request, "message", "");
+    long timestamp = System.currentTimeMillis();
+
+
+    // Store with Datastore
+    Entity commentEntity = new Entity("Comment");
+    commentEntity.setProperty("email", email);
+    commentEntity.setProperty("timestamp", timestamp);
+    commentEntity.setProperty("name", name);
+    commentEntity.setProperty("message", message);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(commentEntity);
+
+    // Redirect
+    response.sendRedirect("/history.html");
+  }
+
+
+  /* Returns parameter value given its name */
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    String value = request.getParameter(name);
+    return value;
   }
 }
