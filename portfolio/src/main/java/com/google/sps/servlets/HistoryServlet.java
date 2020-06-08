@@ -36,17 +36,6 @@ import java.util.List;
 public class HistoryServlet extends HttpServlet {
 
   @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // Get the input from the form.
-    int numberParam = getHistoryParameters(request);
-    if (numberParam == -1) {
-      response.setContentType("text/html");
-      response.getWriter().println("Please enter an integer greater than 1.");
-      return;
-    }
-  }
-
-  @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
     int numberParam = getHistoryParameters(request);
@@ -79,7 +68,6 @@ public class HistoryServlet extends HttpServlet {
 
     Gson gson = new Gson();
 
-    // response.sendRedirect("/history.html");
     response.setContentType("application/json;");
     response.getWriter().println(gson.toJson(comments));
   }

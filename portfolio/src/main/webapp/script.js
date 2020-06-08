@@ -16,7 +16,8 @@
  * Gets past comment history from the DataServlet server and adds it to the DOM
  */
 function getCommentHistory() {
-    fetch('/history?comment-number=' + document.getElementById('comment-number').value).then(response => response.json()).then((comments) => {
+    const commentNumberElement = document.getElementById('comment-number');
+    fetch('/history?comment-number=' + commentNumberElement.value).then(response => response.json()).then((comments) => {
     console.log(comments);
     const historyElement = document.getElementById('history-container');
     
@@ -46,41 +47,26 @@ function createHistoryElement(comment) {
   historyElement.className = 'comment';
 
   const titleElement = document.createElement('span');
-  titleElement.innerText = "* " + comment.message + " by " + comment.name + " on " + comment.timestamp;
+  titleElement.innerText = "* \"" + comment.message + "\" by " + comment.name + " on " + comment.timestamp;
 
-//   const deleteButtonElement = document.createElement('button');
-//   deleteButtonElement.innerText = 'Delete';
-//   deleteButtonElement.addEventListener('click', () => {
-//     deleteHistory(comment);
-
-//     // Remove the task from the DOM.
-//     historyElement.remove();
-//  });
+  const deleteButtonElement = document.createElement('button');
+  deleteButtonElement.innerText = 'Delete';
+  deleteButtonElement.addEventListener('click', () => {
+    deleteHistory(comment);
+    historyElement.remove();
+ });
 
   historyElement.appendChild(titleElement);
-  //taskElement.appendChild(deleteButtonElement);
+  historyElement.appendChild(deleteButtonElement);
   return historyElement;
 }
 
-// /** Tells the server to delete the task. */
-// function deleteTask(task) {
-//   const params = new URLSearchParams();
-//   params.append('id', task.id);
-//   fetch('/delete-task', {method: 'POST', body: params});
-// }
-
-//     messages.forEach((line) => {
-//       historyElement.appendChild(createListElement(line));
-//     });
-//   });
-// }
-
-// /** Creates an <li> element containing text. */
-// function createListElement(text) {
-//   const liElement = document.createElement('li');
-//   liElement.innerText = text;
-//   return liElement;
-// }
+/** Tells the server to delete the comment. */
+function deleteHistory(comment) {
+  const params = new URLSearchParams();
+  params.append('id', comment.id);
+  fetch('/delete-comment', {method: 'POST', body: params});
+}
 
 /**
  * Prints and deletes rotating strings that self-describe
