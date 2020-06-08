@@ -20,12 +20,16 @@ function getLogin() {
     if(account.loggedIn == false) {
       loginLink.href = account.loginUrl;
       loginLink.innerText = "Login";
-      document.getElementById("form-container").style.display ="none";
+      document.getElementById("reminder-container").style.display ="block";
     }
     //If logged in
     else {
       loginLink.href = account.loginUrl;
       loginLink.innerText = "Logout";
+      document.getElementById("name").value = account.nickname;
+      document.getElementById("email").value = account.email;
+      document.getElementById("h2-container").style.display ="block";
+      document.getElementById("h2-container").innerText ="Welcome " + account.nickname;
       document.getElementById("form-container").style.display ="block";
     }
     console.log(account.email);

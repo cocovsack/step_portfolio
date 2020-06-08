@@ -20,6 +20,7 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gson.Gson;
@@ -38,12 +39,14 @@ public class LoginServlet extends HttpServlet {
     private final boolean loggedIn;
     private final String loginUrl;
     private final String email;
+    private final String nickname;
 
-    public loginStats(boolean loggedIn, String loginUrl, String email)
+    public loginStats(boolean loggedIn, String loginUrl, String email, String nickname)
     {
       this.loggedIn = loggedIn;
       this.loginUrl = loginUrl;
       this.email = email;
+      this.nickname = nickname;
     }
   }
 
@@ -54,15 +57,17 @@ public class LoginServlet extends HttpServlet {
     Gson gson = new Gson();
 
     loginStats account;
-    // If user is logged in, create information 
-    if (userService.isUserLoggedIn()) {
-      String email = userService.getCurrentUser().getEmail();
-      String url = userService.createLogoutURL("/comment.html");
-      account = new loginStats(true, url, email);
-    }
+    // If user is not logged in
+    if (!userService.isUserLoggedIn()) {
+      String url = userService.createLoginURL("/comment.html");
+      account = new loginStats(false, url, null, null);
+    }   
+    // If user is logged in
     else {
-      String url = userService.createLoginURL("/index.html");
-      account = new loginStats(false, url, null);
+      String nickname = userService.getCurrentUser().getNickname();
+      String email = userService.getCurrentUser().getEmail();
+      String url = userService.createLogoutURL("/index.html");
+      account = new loginStats(true, url, email, nickname);
     }
     response.getWriter().println(gson.toJson(account));
   }
