@@ -60,7 +60,7 @@ body {
 }
 
 /* Navigation Bar */
-ul li {
+#nav li {
   float: left;
   font-family: 'BlackJack', helvetica, sans-serif;
   font-size: 25px;
@@ -68,8 +68,8 @@ ul li {
   margin-right: 1em;
   padding-left: 0;
   padding-top: 40px;
-  padding-right: 80px;
   padding-bottom: 40px;
+  width: 100px;
 }
 
 li a {
@@ -154,6 +154,10 @@ h3 {
   letter-spacing: 3px;
   text-align: left;
   text-transform: uppercase;
+}
+
+.centered {
+  text-align: center;
 }
 
 h4 {
@@ -307,51 +311,73 @@ hr.solid {
   text-align: center;
 }
 
+#hidden {
+  color:pink;
+  font-family: 'BlackJack', helvetica, sans-serif;
+  font-size: 20px;
+  letter-spacing: 3px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 #history-container {
   font-size: 20px;
   margin-bottom: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
   margin-top: 20px;
-  overflow: hidden;
   text-align: center;
-  width: 70%;
+  width: 100%;
 }
 
 .history {
-  padding: 0;
+  display: inline-table;
+  list-style-type: square;
+  margin-left: 10px;
+  margin-right: 10px;
   overflow: hidden;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
+}
+
+.delete-button {
+  background-color: pink;
+  color: white;
+  font-family: 'BlackJack', helvetica, sans-serif;
+  margin-left: 10px;
 }
 
 .comment {
+  float: none;
   font-family: 'Teko', helvetica, sans-serif;
   margin-top: 17px;
   padding-top: 0;
   text-align: center;
+  width: 100%
 }
 
-input[type=text], .textarea {
+input[type=text], input[type=number], .textarea {
   border: 1px solid #ccc;
-  margin: 8px 0;
+  margin: 8px 8px;
   padding: 12px 20px;
-  width: 100%;
+  width: 70%;
 }
 
-input[type=text]:focus, .textarea:focus {
+input[type=text]:focus, input[type=number].focus, textarea:focus {
   border: 3px solid pink;
 }
 
-.textarea {
+textarea {
   background-color: white;
-  display: block;
   line-height: 20px;
-  min-height: 40px;
+  margin: 8px 8px;
+  min-height: 100px;
   overflow: hidden;
-  resize: both;
+  padding: 12px 20px;
+  resize: vertical;
   text-align: left;
-  width: 100%;
-}
-
-.textarea[contenteditable]:empty::before {
-  content: "Write message to Coco here.";
+  width: 70%;
 }
 
 label { 

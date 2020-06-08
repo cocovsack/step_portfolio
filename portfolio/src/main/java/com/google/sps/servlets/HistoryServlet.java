@@ -29,6 +29,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 
 /** Servlet that returns some example content. */
@@ -38,13 +39,13 @@ public class HistoryServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-    int numberParam = getHistoryParameters(request);
+    int numberParam = getNumberParams(request);
     if (numberParam == -1) {
       response.setContentType("text/html");
       response.getWriter().println("Please enter an integer greater than 1.");
       return;
     }
-
+    
     Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -73,9 +74,11 @@ public class HistoryServlet extends HttpServlet {
   }
 
   /* Returns the number of comments to be displayed while ensuring it is in range*/
-  private int getHistoryParameters(HttpServletRequest request) {
-    // Get the input from the form.
+  private int getNumberParams(HttpServletRequest request) {
+    // Get the number of comments input from the form.
     String stringNumberParam = request.getParameter("comment-number");
+
+    
     int numberParam;
     try {
       numberParam = Integer.parseInt(stringNumberParam);
