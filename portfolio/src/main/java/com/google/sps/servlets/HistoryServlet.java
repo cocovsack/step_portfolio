@@ -39,8 +39,8 @@ public class HistoryServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-    int numberParam = getNumberParams(request);
-    if (numberParam == 0) {
+    int numberParam = getNumberParam(request);
+    if (numberParam < 1){
       response.setContentType("text/html");
       response.getWriter().println("Please enter an integer greater than 1.");
       return;
@@ -82,7 +82,7 @@ public class HistoryServlet extends HttpServlet {
   }
 
   /* Returns the number of comments to be displayed while ensuring it is in range*/
-  private int getNumberParams(HttpServletRequest request) {
+  private int getNumberParam(HttpServletRequest request) {
     // Get the number of comments input from the form.
     String stringNumberParam = request.getParameter("comment-number");
     int numberParam;
