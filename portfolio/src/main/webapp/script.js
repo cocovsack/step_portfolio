@@ -13,17 +13,17 @@
 // limitations under the License.
 
 
-/**
- * Gets past comment history from the DataServlet server and adds it to the DOM
- */
+/* Gets past comment history from the DataServlet server and adds it to the DOM */
 function getCommentHistory() {
     // Show the title
     const hiddenElement = document.getElementById('hidden');
-    hiddenElement.style.display = "block";
+    hiddenElement.style.display = 'block';
 
     // Fetch the comments
     const commentNumberElement = document.getElementById('comment-number');
-    fetch('/history?comment-number=' + commentNumberElement.value).then(response => response.json()).then((comments) => {
+    const sortParamElement = document.getElementById('sort-param');
+
+    fetch('/history?comment-number=' + commentNumberElement.value + '&sort-param=' + sortParamElement.value).then(response => response.json()).then((comments) => {
     const historyElement = document.getElementById('history-container');
     
     // Delete the old history list if it exists
@@ -36,7 +36,7 @@ function getCommentHistory() {
     }
 
     // Make new history list
-    var node = document.createElement("ul");
+    var node = document.createElement('ul');
     node.className = 'history';
     historyElement.appendChild(node);
     comments.forEach((comment) => {

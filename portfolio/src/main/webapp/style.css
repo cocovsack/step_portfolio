@@ -289,7 +289,6 @@ hr.solid {
   margin-bottom: 5px;
   padding-left: 10%;
   text-transform: uppercase;
-
 }
 
 .timeline-content {
@@ -348,13 +347,23 @@ hr.solid {
   margin-left: 10px;
 }
 
-.comment {
+.comment{
   float: none;
   font-family: 'Teko', helvetica, sans-serif;
   margin-top: 17px;
   padding-top: 0;
   text-align: center;
   width: 100%
+}
+
+.selector {
+  float: none;
+  font-family: 'Teko', helvetica, sans-serif;
+  margin-bottom: 10px;
+  margin-top: 25px;
+  padding-top: 0;
+  text-align: center;
+  width: 40%
 }
 
 input[type=text], input[type=number], .textarea {

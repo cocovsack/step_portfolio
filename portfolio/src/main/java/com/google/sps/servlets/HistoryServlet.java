@@ -32,22 +32,30 @@ import java.util.List;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 
-/** Servlet that returns some example content. */
+/** Servlet that returns some user comments. */
 @WebServlet("/history")
 public class HistoryServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-    int numberParam = getNumberParams(request);
-    if (numberParam == -1) {
+    int numberParam = getNumberParam(request);
+    if (numberParam < 1){
       response.setContentType("text/html");
       response.getWriter().println("Please enter an integer greater than 1.");
       return;
     }
-    
-    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
 
+    String sortParam = request.getParameter("sort-param");
+
+    Query query;
+    if (sortParam.equals("timestamp")){
+      query = new Query("Comment").addSort(sortParam, SortDirection.DESCENDING);
+    }
+    else{
+      query = new Query("Comment").addSort(sortParam, SortDirection.ASCENDING);
+    }
+    
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
@@ -74,23 +82,21 @@ public class HistoryServlet extends HttpServlet {
   }
 
   /* Returns the number of comments to be displayed while ensuring it is in range*/
-  private int getNumberParams(HttpServletRequest request) {
+  private int getNumberParam(HttpServletRequest request) {
     // Get the number of comments input from the form.
     String stringNumberParam = request.getParameter("comment-number");
-
-    
     int numberParam;
     try {
       numberParam = Integer.parseInt(stringNumberParam);
     } catch (NumberFormatException e) {
       System.err.println("Could not convert to int: " + stringNumberParam);
-      return -1;
+      return 0;
     }
 
     // Check that the input is above 1
     if (numberParam < 1) {
       System.err.println("Must display more than 1 comment");
-      return -1;
+      return 0;
     }
 
     return numberParam;

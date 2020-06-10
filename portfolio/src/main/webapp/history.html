@@ -29,6 +29,12 @@
         <h3 class="centered">How many comments would you like displayed?</h3>
         <input type="number" id="comment-number" name="comment-number" min="1" max="10">
         <br>
+        <h3 class="centered">How would you like the comments sorted?</h3>
+        <select id="sort-param" class="selector" name="sort-param">
+          <option value="name">Alphabetically (by user)</option>
+          <option value="timestamp">Sequentially (by date)</option>
+        </select>
+        <br>
         <button class = "download" onclick="getCommentHistory()" >Display Comment History</button>
         <br/><br/>
         <div id="hidden" style="display: none">Archived Comments</div>
