@@ -48,11 +48,11 @@ public class HistoryServlet extends HttpServlet {
     String sortParam = request.getParameter("sort-param");
 
     Query query;
-    if (sortParam.equals("timestamp")){
-      query = new Query("Comment").addSort(sortParam, SortDirection.DESCENDING);
+    if (sortParam.equals("name")){
+      query = new Query("Comment").addSort(sortParam, SortDirection.ASCENDING);
     }
     else{
-      query = new Query("Comment").addSort(sortParam, SortDirection.ASCENDING);
+      query = new Query("Comment").addSort(sortParam, SortDirection.DESCENDING);
     }
     
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();

@@ -71,7 +71,7 @@ function getCommentHistory() {
   });
 }
 
-/** Creates an element that represents a task, including its delete button. */
+/** Creates an element that represents a task, including its delete button and tooltip box. */
 function createHistoryElement(comment) {
   console.log(comment);
   // Convert date
@@ -87,30 +87,44 @@ function createHistoryElement(comment) {
 
   // Initialize tooltip
   const ttBox = document.createElement("div");
+  ttBox.className = 'tooltip';
   ttBox.style.visibility = "hidden"; // make it hidden till mouse over
-  ttBox.innerText = comment.score.toFixed(2);
+
+  const ttBoxText = document.createElement('span');
+  ttBoxText.className = 'tooltip-text';
+  ttBoxText.innerText = comment.score.toFixed(2);
 
   // Display sentiment analysis
   const sentimentButtonElement = document.createElement('button');
   sentimentButtonElement.className = 'sentiment-button';
   sentimentButtonElement.addEventListener('mouseover', () => {
     ttBox.style.visibility = 'visible';
+    ttBoxText.style.visibility = 'visible';
+    });
+  sentimentButtonElement.addEventListener('mouseout', () => {
+    ttBox.style.visibility = 'hidden';
+    ttBoxText.style.visibility = 'hidden';
     });
 
-  if (comment.score >= 0.5)
-  {
+  var newScore = (1 - Math.abs(comment.score)) * 255;
+
+  if (comment.score >= 0.5) {
     sentimentButtonElement.innerText = 'Positive';
-    sentimentButtonElement.style.backgroundColor = 'green';
+    newScore = newScore * 3;
+    sentimentButtonElement.style.backgroundColor = "rgb(0, " + newScore + ", 0)";   
   }
-  else if (comment.score <= -0.5)
-  {
-    sentimentButtonElement.innerText = 'Negative';
-    sentimentButtonElement.style.backgroundColor = 'red';  
-  }
-  else
-  {
+  else if (comment.score >= 0) {
     sentimentButtonElement.innerText = 'Neutral';
-    sentimentButtonElement.style.backgroundColor = 'yellow';
+    sentimentButtonElement.style.backgroundColor = "rgb(" + newScore + ", 255, 0)";   
+  }
+  else if (comment.score >= -0.5) {
+    sentimentButtonElement.innerText = 'Neutral';
+    sentimentButtonElement.style.backgroundColor = "rgb(255, " + newScore + ", 0)";   
+  }
+  else {
+    sentimentButtonElement.innerText = 'Negative';
+    newScore = newScore * 4;
+    sentimentButtonElement.style.backgroundColor = "rgb(" + newScore + ", 0, 0)";   
   }
 
   const deleteButtonElement = document.createElement('button');
@@ -124,6 +138,7 @@ function createHistoryElement(comment) {
   historyElement.appendChild(titleElement);
   historyElement.appendChild(sentimentButtonElement);
   historyElement.appendChild(ttBox);
+  ttBox.appendChild(ttBoxText);
   historyElement.appendChild(deleteButtonElement);
   return historyElement;
 }

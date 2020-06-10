@@ -345,18 +345,55 @@ hr.solid {
   color: white;
   font-family: 'BlackJack', helvetica, sans-serif;
   margin-left: 10px;
+  width: 55px;
+  height: 35px;
+  position: absolute;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltip-text {
+  visibility: hidden;
+  width: 80px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 3px 0;
+  position: absolute;
+  z-index: 1;
+  margin-left: -65px;
+  margin-top: 15px;
+}
+
+.tooltip .tooltip-text::after {
+  border-color: transparent transparent black transparent;
+  border-style: solid;
+  border-width: 5px;
+  bottom: 100%;
+  content: "";
+  left: 50%;
+  margin-left: -5px;
+  position: absolute;
 }
 
 .sentiment-button {
-  padding: 5px 0;
   color: white;
   font-family: 'BlackJack', helvetica, sans-serif;
+  height: 35px;
   margin-left: 10px;
+  padding: 5px 0;
+  width: 55px;
 }
 
 .comment{
   float: none;
   font-family: 'Teko', helvetica, sans-serif;
+  margin-bottom: 40px;
   margin-top: 17px;
   padding-top: 0;
   text-align: center;
@@ -416,9 +453,8 @@ label {
   text-align: center;
 }
 
-
 #login-link:hover {
-	color: white;
+  color: white;
 }
 
 #login-container {
