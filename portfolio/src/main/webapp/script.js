@@ -46,6 +46,7 @@ function getCommentHistory() {
 
   fetch('/history?comment-number=' + commentNumberElement.value + '&sort-param=' + sortParamElement.value)
       .then(response => response.json()).then((comments) => {
+  
   const historyElement = document.getElementById('history-container');
 
   // Delete the old history list from the html tree if it exists
