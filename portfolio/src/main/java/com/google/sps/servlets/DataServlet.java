@@ -22,6 +22,9 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+import com.google.cloud.language.v1.Document;
+import com.google.cloud.language.v1.LanguageServiceClient;
+import com.google.cloud.language.v1.Sentiment;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.annotation.WebServlet;
@@ -42,6 +45,14 @@ public class DataServlet extends HttpServlet {
     String email = getParameter(request, "email", "");
     String message = getParameter(request, "message", "");
     long timestamp = System.currentTimeMillis();
+    
+    //Apply sentiment analysis
+    Document doc =
+        Document.newBuilder().setContent(message).setType(Document.Type.PLAIN_TEXT).build();
+    LanguageServiceClient languageService = LanguageServiceClient.create();
+    Sentiment sentiment = languageService.analyzeSentiment(doc).getDocumentSentiment();
+    double score = sentiment.getScore();
+    languageService.close();
 
     // Store with Datastore
     Entity commentEntity = new Entity("Comment");
@@ -49,11 +60,12 @@ public class DataServlet extends HttpServlet {
     commentEntity.setProperty("timestamp", timestamp);
     commentEntity.setProperty("name", name);
     commentEntity.setProperty("message", message);
+    commentEntity.setProperty("score", score);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
 
-    // Redirect TODO might change this!!!!
+    // Redirect to the comment history page
     response.sendRedirect("/history.html");
   }
   

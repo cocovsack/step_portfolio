@@ -347,6 +347,13 @@ hr.solid {
   margin-left: 10px;
 }
 
+.sentiment-button {
+  padding: 5px 0;
+  color: white;
+  font-family: 'BlackJack', helvetica, sans-serif;
+  margin-left: 10px;
+}
+
 .comment{
   float: none;
   font-family: 'Teko', helvetica, sans-serif;

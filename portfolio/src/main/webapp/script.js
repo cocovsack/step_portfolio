@@ -47,8 +47,8 @@ function getCommentHistory() {
   fetch('/history?comment-number=' + commentNumberElement.value + '&sort-param=' + sortParamElement.value)
       .then(response => response.json()).then((comments) => {
   const historyElement = document.getElementById('history-container');
-    
-  // Delete the old history list if it exists
+
+  // Delete the old history list from the html tree if it exists
   const historyList = document.getElementsByClassName('history')[0];
   if (historyList !== undefined){
     while (historyList.firstChild) {
@@ -69,16 +69,45 @@ function getCommentHistory() {
 
 /** Creates an element that represents a task, including its delete button. */
 function createHistoryElement(comment) {
+  console.log(comment);
   // Convert date
   var time = comment.timestamp;
   var date = new Date(time);
   time = date.toString();
-
+  
   // Create element
   const historyElement = document.createElement('li');
   historyElement.className = 'comment';
   const titleElement = document.createElement('span');
   titleElement.innerText = "\"" + comment.message + "\" by " + comment.name + " on " + time;
+
+  // Initialize tooltip
+  const ttBox = document.createElement("div");
+  ttBox.style.visibility = "hidden"; // make it hidden till mouse over
+  ttBox.innerText = comment.score.toFixed(2);
+
+  // Display sentiment analysis
+  const sentimentButtonElement = document.createElement('button');
+  sentimentButtonElement.className = 'sentiment-button';
+  sentimentButtonElement.addEventListener('mouseover', () => {
+    ttBox.style.visibility = 'visible';
+    });
+
+  if (comment.score >= 0.5)
+  {
+    sentimentButtonElement.innerText = 'Positive';
+    sentimentButtonElement.style.backgroundColor = 'green';
+  }
+  else if (comment.score <= -0.5)
+  {
+    sentimentButtonElement.innerText = 'Negative';
+    sentimentButtonElement.style.backgroundColor = 'red';  
+  }
+  else
+  {
+    sentimentButtonElement.innerText = 'Neutral';
+    sentimentButtonElement.style.backgroundColor = 'yellow';
+  }
 
   const deleteButtonElement = document.createElement('button');
   deleteButtonElement.innerText = 'Delete';
@@ -89,6 +118,8 @@ function createHistoryElement(comment) {
  });
 
   historyElement.appendChild(titleElement);
+  historyElement.appendChild(sentimentButtonElement);
+  historyElement.appendChild(ttBox);
   historyElement.appendChild(deleteButtonElement);
   return historyElement;
 }
@@ -100,9 +131,7 @@ function deleteHistory(comment) {
   fetch('/delete-comment', {method: 'POST', body: params});
 }
 
-/**
- * Prints and deletes rotating strings that self-describe
- */
+/* Prints and deletes rotating strings that self-describe*/
 
 /* Immediately after window loads, call function on array of strings and period */
 window.onload = function() {
