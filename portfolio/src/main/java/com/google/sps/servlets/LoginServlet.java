@@ -34,15 +34,14 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
-  public final class loginStats {
+  private final class LoginStats {
 
     private final boolean loggedIn;
     private final String loginUrl;
     private final String email;
     private final String nickname;
 
-    public loginStats(boolean loggedIn, String loginUrl, String email, String nickname)
-    {
+    private LoginStats(boolean loggedIn, String loginUrl, String email, String nickname) {
       this.loggedIn = loggedIn;
       this.loginUrl = loginUrl;
       this.email = email;
@@ -56,18 +55,16 @@ public class LoginServlet extends HttpServlet {
     UserService userService = UserServiceFactory.getUserService();
     Gson gson = new Gson();
 
-    loginStats account;
+    LoginStats account;
     // If user is not logged in
     if (!userService.isUserLoggedIn()) {
       String url = userService.createLoginURL("/comment.html");
-      account = new loginStats(false, url, null, null);
-    }   
-    // If user is logged in
-    else {
+      account = new LoginStats(false, url, null, null);
+    } else {
       String nickname = userService.getCurrentUser().getNickname();
       String email = userService.getCurrentUser().getEmail();
       String url = userService.createLogoutURL("/index.html");
-      account = new loginStats(true, url, email, nickname);
+      account = new LoginStats(true, url, email, nickname);
     }
     response.getWriter().println(gson.toJson(account));
   }

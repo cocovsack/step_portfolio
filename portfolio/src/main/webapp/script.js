@@ -14,16 +14,13 @@
 
 function getLogin() {
   fetch('/login').then(response => response.json()).then((account) => {
-    console.log(account);
     loginLink = document.getElementById("login-link");
     //If not logged in
     if(account.loggedIn == false) {
       loginLink.href = account.loginUrl;
       loginLink.innerText = "Login";
       document.getElementById("reminder-container").style.display ="block";
-    }
-    //If logged in
-    else {
+    } else {
       loginLink.href = account.loginUrl;
       loginLink.innerText = "Logout";
       document.getElementById("name").value = account.nickname;
@@ -31,8 +28,9 @@ function getLogin() {
       document.getElementById("h2-container").style.display ="block";
       document.getElementById("h2-container").innerText ="Welcome " + account.nickname;
       document.getElementById("form-container").style.display ="block";
+
+      
     }
-    console.log(account.email);
   });
 }
 
@@ -46,7 +44,8 @@ function getCommentHistory() {
   const commentNumberElement = document.getElementById('comment-number');
   const sortParamElement = document.getElementById('sort-param');
 
-  fetch('/history?comment-number=' + commentNumberElement.value + '&sort-param=' + sortParamElement.value).then(response => response.json()).then((comments) => {
+  fetch('/history?comment-number=' + commentNumberElement.value + '&sort-param=' + sortParamElement.value)
+      .then(response => response.json()).then((comments) => {
   const historyElement = document.getElementById('history-container');
     
   // Delete the old history list if it exists
