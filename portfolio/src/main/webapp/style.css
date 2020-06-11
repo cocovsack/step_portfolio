@@ -344,30 +344,31 @@ hr.solid {
   background-color: pink;
   color: white;
   font-family: 'BlackJack', helvetica, sans-serif;
-  margin-left: 10px;
-  width: 55px;
   height: 35px;
+  margin-left: 10px;
   position: absolute;
+  width: 55px;
 }
 
 .tooltip {
-  position: relative;
-  display: inline-block;
   border-bottom: 1px dotted black;
+  display: inline-block;
+  position: relative;
+
 }
 
 .tooltip .tooltip-text {
-  visibility: hidden;
-  width: 80px;
   background-color: black;
-  color: #fff;
-  text-align: center;
   border-radius: 6px;
-  padding: 3px 0;
-  position: absolute;
-  z-index: 1;
+  color: #fff;
   margin-left: -65px;
   margin-top: 15px;
+  padding: 3px 0;
+  position: absolute;
+  text-align: center;
+  visibility: hidden;
+  width: 80px;
+  z-index: 1;
 }
 
 .tooltip .tooltip-text::after {

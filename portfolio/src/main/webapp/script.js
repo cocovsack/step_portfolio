@@ -46,31 +46,29 @@ function getCommentHistory() {
 
   fetch('/history?comment-number=' + commentNumberElement.value + '&sort-param=' + sortParamElement.value)
       .then(response => response.json()).then((comments) => {
-  
-  const historyElement = document.getElementById('history-container');
+        const historyElement = document.getElementById('history-container');
 
-  // Delete the old history list from the html tree if it exists
-  const historyList = document.getElementsByClassName('history')[0];
-  if (historyList !== undefined){
-    while (historyList.firstChild) {
-      historyList.removeChild(historyList.firstChild);
-    }
-    historyElement.removeChild(historyElement.firstChild);
-  }
-
-  // Make new history list
-  var node = document.createElement('ul');
-  node.className = 'history';
-  historyElement.appendChild(node);
-  comments.forEach((comment) => {
-    node.appendChild(createHistoryElement(comment));
-  })
+        // Delete the old history list from the html tree if it exists
+        const historyList = document.getElementsByClassName('history')[0];
+        if (historyList !== undefined){
+          while (historyList.firstChild) {
+            historyList.removeChild(historyList.firstChild);
+          }
+          historyElement.removeChild(historyElement.firstChild);
+        }
+        
+        // Make new history list
+        var node = document.createElement('ul');
+        node.className = 'history';
+        historyElement.appendChild(node);
+        comments.forEach((comment) => {
+          node.appendChild(createHistoryElement(comment));
+        })
   });
 }
 
 /** Creates an element that represents a task, including its delete button and tooltip box. */
 function createHistoryElement(comment) {
-  console.log(comment);
   // Convert date
   var time = comment.timestamp;
   var date = new Date(time);
@@ -147,7 +145,7 @@ function deleteHistory(comment) {
   fetch('/delete-comment', {method: 'POST', body: params});
 }
 
-/* Prints and deletes rotating strings that self-describe*/
+/* Prints and deletes rotating strings that self-describe */
 
 /* Immediately after window loads, call function on array of strings and period */
 window.onload = function() {

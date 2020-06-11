@@ -14,7 +14,7 @@
 
 package com.google.sps.data;
 
-/** A comment. */
+/** A comment class that contains information about each comment stored including its sentiment analysis score (ranging from -1 as negative to 1 as positive). */
 public final class Comment {
 
   private final long id;
