@@ -398,6 +398,33 @@ label {
   text-align: left; 
 }
 
+/* Login/Logout */
+#login-link {
+  color: black;
+  font-family: 'BlackJack', helvetica, sans-serif;
+  font-size: 25px;
+  margin-left: 80px;
+  margin-top: 50px;
+  position: absolute;
+  text-align: center;
+}
+
+#login-link:hover {
+  color: white;
+}
+
+#login-container {
+  background-color: pink;
+  height: 100px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 250px;
+}
+
+#reminder-container, #h2-container, #form-container {
+  display: none;
+}
 
 /* Fonts */
 @font-face {

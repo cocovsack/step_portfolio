@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body id = "comment">
+  <body id = "comment" onload="getLogin()">
     <div id="frame-top" class="frame"></div>
     <div id="frame-bottom" class="frame"></div>
     <div id="frame-right" class="frame"></div>
@@ -19,13 +19,13 @@
       <li><a href="comment.html">Comment</a></li>
     </ul>
     <div id="content">
-      <h2>
-        <span
-            class="txt-rotate"
-            data-period="10000"
-            data-rotate='["Comment" ]'></span>
+      <div id="login-container">
+        <a id="login-link"></a>
+      </div>
+      <h2 id="reminder-container">Please log in to comment</h2>
+      <h2 id="h2-container">
       </h2>
-      <div class="form-container">
+      <div class="form-container" id ="form-container">
         <form action="/comment" method="POST">
           <label for="name">Name:</label><br>
           <input type="text" id="name" name="name" required><br>

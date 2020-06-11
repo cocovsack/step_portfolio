@@ -20,23 +20,23 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
-import com.google.sps.data.Comment;
-import com.google.gson.Gson;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
 
 
-/* Servlet that returns some example content. */
+/* Servlet that returns some comment data. */
 @WebServlet("/comment")
 public class DataServlet extends HttpServlet {
-  
+
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
     // Get the input from the form.
     String name = getParameter(request, "name", "");
     String email = getParameter(request, "email", "");
@@ -53,11 +53,10 @@ public class DataServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
 
-    // Redirect
+    // Redirect TODO might change this!!!!
     response.sendRedirect("/history.html");
   }
-
-
+  
   /* Returns parameter value given its name */
   private String getParameter(HttpServletRequest request, String name, String defaultValue) {
     String value = request.getParameter(name);
