@@ -20,6 +20,9 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.users.User;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 import com.google.sps.data.Comment;
 import com.google.gson.Gson;
 import java.io.IOException;
@@ -58,6 +61,9 @@ public class HistoryServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
+    // Get user information for future checks
+    UserService userService = UserServiceFactory.getUserService();
+
     List<Comment> comments = new ArrayList<>();
 
     for (Entity entity : results.asIterable()) {
@@ -78,7 +84,15 @@ public class HistoryServlet extends HttpServlet {
         score = (double) entity.getProperty("score");
       }
 
-      Comment comment = new Comment(id, name, email, message, timestamp, score);
+      boolean usercomment;
+      //Check if comment is written by current user
+      if (email.equals(userService.getCurrentUser().getEmail())) {
+        usercomment = true;
+      } else {
+        usercomment = false;
+      }
+
+      Comment comment = new Comment(id, name, email, message, timestamp, score, usercomment);
       comments.add(comment);
     }
 

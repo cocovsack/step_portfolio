@@ -23,13 +23,15 @@ public final class Comment {
   private final String message;
   private final long timestamp;
   private final double score;
+  private final boolean usercomment;
 
-  public Comment(long id, String name, String email, String message, long timestamp, double score) {
+  public Comment(long id, String name, String email, String message, long timestamp, double score, boolean usercomment) {
     this.id = id;
     this.name = name;
     this.email = email;
     this.message = message;
     this.timestamp = timestamp;
     this.score = score;
+    this.usercomment = usercomment;
   }
 }
