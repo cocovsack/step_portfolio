@@ -13,8 +13,11 @@
 // limitations under the License.
 
 package com.google.sps.data;
-
-/** A comment class that contains information about each comment stored including its sentiment analysis score (ranging from -1 as negative to 1 as positive). */
+/**
+   * A comment class that contains information about the author ('name', 'email'), the comment ('timestamp' when it
+   * was submitted, content of the 'message') and its sentiment ('score' with a value ranging from -1 (negative) 
+   * to 1 (positive) sentiment). 
+   */
 public final class Comment {
 
   private final long id;
@@ -23,15 +26,15 @@ public final class Comment {
   private final String message;
   private final long timestamp;
   private final double score;
-  private final boolean usercomment;
+  private final boolean isAuthor;
 
-  public Comment(long id, String name, String email, String message, long timestamp, double score, boolean usercomment) {
+  public Comment(long id, String name, String email, String message, long timestamp, double score, boolean isAuthor) {
     this.id = id;
     this.name = name;
     this.email = email;
     this.message = message;
     this.timestamp = timestamp;
     this.score = score;
-    this.usercomment = usercomment;
+    this.isAuthor = isAuthor;
   }
 }

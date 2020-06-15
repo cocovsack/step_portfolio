@@ -79,20 +79,15 @@ public class HistoryServlet extends HttpServlet {
       // Check for valid score and return 0 if none availble
       if (entity.getProperty("score") == null) {
         score = 0.0;
-      }
-      else {
+      } else {
         score = (double) entity.getProperty("score");
       }
 
-      boolean usercomment;
-      //Check if comment is written by current user
-      if (email.equals(userService.getCurrentUser().getEmail())) {
-        usercomment = true;
-      } else {
-        usercomment = false;
-      }
 
-      Comment comment = new Comment(id, name, email, message, timestamp, score, usercomment);
+      //Check if comment is written by current user
+      boolean isAuthor = email.equals(userService.getCurrentUser().getEmail());
+
+      Comment comment = new Comment(id, name, email, message, timestamp, score, isAuthor);
       comments.add(comment);
     }
 

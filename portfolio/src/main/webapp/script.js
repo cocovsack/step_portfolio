@@ -129,7 +129,7 @@ function createHistoryElement(comment) {
   ttBox.appendChild(ttBoxText);
 
   //If the comment is that of the current user, add a delete button
-  if (comment.usercomment == true) {
+  if (comment.isAuthor == true) {
     const deleteButtonElement = document.createElement('button');
     deleteButtonElement.innerText = 'Delete';
     deleteButtonElement.className = 'delete-button';
