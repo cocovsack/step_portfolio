@@ -38,7 +38,6 @@ public class HistoryServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
     int numberParam = getNumberParam(request);
     if (numberParam < 1){
       response.setContentType("text/html");
@@ -49,11 +48,11 @@ public class HistoryServlet extends HttpServlet {
     String sortParam = request.getParameter("sort-param");
 
     Query query;
-    if (sortParam.equals("timestamp")){
-      query = new Query("Comment").addSort(sortParam, SortDirection.DESCENDING);
+    if (sortParam.equals("name")){
+      query = new Query("Comment").addSort(sortParam, SortDirection.ASCENDING);
     }
     else{
-      query = new Query("Comment").addSort(sortParam, SortDirection.ASCENDING);
+      query = new Query("Comment").addSort(sortParam, SortDirection.DESCENDING);
     }
     
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -70,15 +69,23 @@ public class HistoryServlet extends HttpServlet {
       String email = (String) entity.getProperty("email");
       String message = (String) entity.getProperty("message");
       long timestamp = (long) entity.getProperty("timestamp");
+      double score;
+      // Check for valid score and return 0 if none availble
+      if (entity.getProperty("score") == null) {
+        score = 0.0;
+      }
+      else {
+        score = (double) entity.getProperty("score");
+      }
 
-      Comment comment = new Comment(id, name, email, message, timestamp);
+      Comment comment = new Comment(id, name, email, message, timestamp, score);
       comments.add(comment);
     }
 
     Gson gson = new Gson();
 
     response.setContentType("application/json;");
-    response.getWriter().println(gson.toJson(comments));
+    response.getWriter().print(gson.toJson(comments));
   }
 
   /* Returns the number of comments to be displayed while ensuring it is in range*/
