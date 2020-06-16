@@ -23,6 +23,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 
 /** Servlet responsible for deleting comments. */
 @WebServlet("/delete-comment")
@@ -30,6 +32,19 @@ public class DeleteServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+    // Double check to see if user is logged in
+    UserService userService = UserServiceFactory.getUserService();
+    if (!userService.isUserLoggedIn()) {
+      response.sendRedirect("/index.html");
+      return;
+    }
+    // Double check if comment to be deleted is authored by current user
+    if (request.getParameter("isAuthor").equals("false")){
+      response.sendRedirect("/index.html");
+      return;
+    }
+
     long id = Long.parseLong(request.getParameter("id"));
 
     Key commentKey = KeyFactory.createKey("Comment", id);

@@ -122,19 +122,23 @@ function createHistoryElement(comment) {
     sentimentButtonElement.style.backgroundColor = "rgb(" + newScore + ", 0, 0)";   
   }
 
-  const deleteButtonElement = document.createElement('button');
-  deleteButtonElement.innerText = 'Delete';
-  deleteButtonElement.className = 'delete-button';
-  deleteButtonElement.addEventListener('click', () => {
-    deleteHistory(comment);
-    historyElement.remove();
- });
 
   historyElement.appendChild(titleElement);
   historyElement.appendChild(sentimentButtonElement);
   historyElement.appendChild(ttBox);
   ttBox.appendChild(ttBoxText);
-  historyElement.appendChild(deleteButtonElement);
+
+  //If the comment is that of the current user, add a delete button
+  if (comment.isAuthor == true) {
+    const deleteButtonElement = document.createElement('button');
+    deleteButtonElement.innerText = 'Delete';
+    deleteButtonElement.className = 'delete-button';
+    deleteButtonElement.addEventListener('click', () => {
+      deleteHistory(comment);
+      historyElement.remove();
+    });
+    historyElement.appendChild(deleteButtonElement);
+  }
   return historyElement;
 }
 
