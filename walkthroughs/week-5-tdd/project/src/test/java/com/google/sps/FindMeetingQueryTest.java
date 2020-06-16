@@ -124,14 +124,14 @@ public final class FindMeetingQueryTest {
   }
 
   @Test
-  public void everyAttendeeIsConsideredPersonCBusyOptional() {
+  public void optionalAvailable() {
     // Have each person have different eventss and one completely busy (optional) attendee.
     // We should see three options because each person has split the restricted times.
     //
     // Events  :             |--C--|
     //                 |--A--|     |--B--|
     // Day     : |-----------------------------|
-    // Options : |--1--|     |--2--|     |--3--|
+    // Options : |--1--|                 |--2--|
 
     Collection<Event> events = Arrays.asList(
         new Event("Event 1", TimeRange.fromStartDuration(TIME_0800AM, DURATION_30_MINUTES),
@@ -150,11 +150,12 @@ public final class FindMeetingQueryTest {
         Arrays.asList(TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TIME_0800AM, false),
             TimeRange.fromStartEnd(TIME_0930AM, TimeRange.END_OF_DAY, true));
 
+    System.out.print("hello");
     Assert.assertEquals(expected, actual);
   }
 
     @Test
-  public void everyAttendeeIsConsideredPersonCFreeOptional() {
+  public void optionalAllDay() {
     // Have each person have different eventss and one completely busy (optional) attendee.
     // We should see three options because each person has split the restricted times.
     //
@@ -407,10 +408,9 @@ public final class FindMeetingQueryTest {
     MeetingRequest request = new MeetingRequest(Arrays.asList(), DURATION_30_MINUTES);
     request.addOptionalAttendee(PERSON_A);
     request.addOptionalAttendee(PERSON_B);
-    
+
     Collection<TimeRange> actual = query.query(events, request);
-    Collection<TimeRange> expected =
-        Arrays.asList(TimeRange.fromStartDuration(TIME_0830AM, DURATION_30_MINUTES));
+    Collection<TimeRange> expected = Arrays.asList();
 
     Assert.assertEquals(expected, actual);
   }

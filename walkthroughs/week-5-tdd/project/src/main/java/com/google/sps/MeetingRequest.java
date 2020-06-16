@@ -43,7 +43,7 @@ public final class MeetingRequest {
   }
 
   /**
-   * Returns a read-only copy of the people who are optional to attend this meeting.
+   * Returns a copy of the people who are optional to attend this meeting.
    */
   public Collection<String> getOptionalAttendees() {
     return Collections.unmodifiableCollection(optional_attendees);
