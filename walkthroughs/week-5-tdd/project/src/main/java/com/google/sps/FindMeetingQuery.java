@@ -15,9 +15,46 @@
 package com.google.sps;
 
 import java.util.Collection;
+import java.util.ArrayList;
 
 public final class FindMeetingQuery {
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-    throw new UnsupportedOperationException("TODO: Implement this method.");
+
+  // Get attendees of the meeting
+  Collection<String> attendees = request.getAttendees();
+  long duration = request.getDuration();
+
+  // Initialize empty arrays of already booked times and free times
+  ArrayList<TimeRange> booked = new ArrayList<TimeRange>();
+  ArrayList<TimeRange> free = new ArrayList<TimeRange>();
+
+  // Get list of the events those attendees already have scheduled
+  for (Event event: events) {
+    for (String attendee: attendees) {
+      if (event.getAttendees().contains(attendee)) {
+        booked.add(event.getWhen());
+      }
+    }
+  }
+
+  int currentTime = TimeRange.START_OF_DAY;
+  for (TimeRange event: booked) {
+    // Current time is not contained by a booked event and there is time for the event's duration
+    if (!event.contains(currentTime) && event.start() - currentTime >= duration) {
+      free.add(TimeRange.fromStartEnd(currentTime, event.start(), false));
+    }
+
+    // Move current time pointer to the end of the booked event just processed
+    if (event.end() > currentTime) {
+      currentTime = event.end();
+    }
+  }
+
+  // Check if there is a free slot after all booked times and before the end of day
+  if (TimeRange.END_OF_DAY - currentTime >= duration) {
+    free.add(TimeRange.fromStartEnd(currentTime, TimeRange.END_OF_DAY, true));
+  }
+
+  return free;
   }
 }
